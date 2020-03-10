@@ -11,11 +11,12 @@ def type(string):
   for char in string:  
     sys.stdout.write(char)
     sys.stdout.flush() 
-    time.sleep(0.08)
+    time.sleep(0.06)
 
 def start():
+    os.system('clear')
     type("Welcome! \n")
-    type("Do you want the rounds to be limited or to count you? Please type 1 for limited and 2 for unlimited \n")
+    type("Do you want the rounds to be limited or to count you? Please print 1 for limited and 2 for unlimited rounds:  \n")
     option = input("")
     if option == '1':
         option1()
@@ -27,7 +28,6 @@ def option1():
     try:
         rounds = 10
         guesses = 1
-        print(number)
         while rounds > 0:
             guess = input("Number")
             if int(guess) in listofnumbers:
@@ -44,11 +44,13 @@ def option1():
                         print("You did it in %s rounds" % guesses)
                     break
                 elif int(guess) > number:
+                    os.system('clear')
                     print("too high")
                     rounds -= 1
                     guesses += 1 
                     print("You have %s rounds left" % rounds)
                 elif int(guess) < number:
+                    os.system('clear')
                     print("Too low")
                     rounds -= 1
                     guesses += 1
@@ -68,11 +70,9 @@ def option1():
         os.system('clear')
         option1()
 
-
 def option2():
     try:
         guesses = 0
-        print(number)
         rounds = 1
         os.system('clear')
         while rounds == 0 or rounds > 0:
@@ -84,29 +84,31 @@ def option2():
             elif int(guess) not in listofnumbers:
                 listofnumbers.append(int(guess))
                 if int(guess) > number:
+                    os.system('clear')
                     print("Too high")
                     rounds += 1
                     guesses += 1
                 elif int(guess) < number:
+                    os.system('clear')
                     print("Too low")
                     rounds += 1
                     guesses += 1
                 elif int(guess) == number:
+                    os.system('clear')
                     print("You got it! It was " + str(number))
                     print("You did it in %s guesses" % guesses)
                     playagain = input("Do you wanna play again?")
-                    if playagain.lower() == 'yes' or playagain.lower() == 'y':
+                    if playagain.lower() == 'yes':
                         os.system('clear')
                         start()
-                    elif playagain.lower() == 'no' or playagain.lower() == 'n':
+                    elif playagain.lower() == 'no':
                         sys.exit()
                     else:
-                        print("Please do yes, y, no or n")
+                        print("Please either do 'Y' or 'N'")
                         playagain = input("Do you want to play again?")
     except ValueError:
         print("Sorry, you may only use numbers, no letters")
         time.sleep(2)
         os.system('clear')
-        option2()
-                      
+        option2()       
 start()
