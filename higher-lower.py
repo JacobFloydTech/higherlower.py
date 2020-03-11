@@ -1,11 +1,15 @@
-#Built for Linx (Debian) system
-#For windows replace os.system('clear') with os.system('cls')
+import platform
 import random
 import os 
 import sys
 import time
 listofnumbers = []
-os.system('clear')
+def clear():
+    if platform.system() == 'Windows':
+        os.system('cls')
+    elif platform.system() == "Linux":
+        os.system('clear')
+
 number = random.randint(1,100)
 
 def type(string):
@@ -15,7 +19,7 @@ def type(string):
     time.sleep(0.06)
 
 def start():
-    os.system('clear')
+    clear()
     type("Welcome! \n")
     type("Do you want the rounds to be limited or to count you? Please print 1 for limited and 2 for unlimited rounds:  \n")
     option = input("")
@@ -30,11 +34,11 @@ def option1():
         rounds = 10
         guesses = 1
         while rounds > 0:
-            guess = input("Number")
+            guess = input("Number ")
             if int(guess) in listofnumbers:
                 print(listofnumbers)
                 print("Already used number!")
-                guess = input("Number")
+                guess = input("Number ")
             elif int(guess) not in listofnumbers:
                 listofnumbers.append(int(guess))
                 if int(guess) == number:
@@ -45,13 +49,13 @@ def option1():
                         print("You did it in %s rounds" % guesses)
                     break
                 elif int(guess) > number:
-                    os.system('clear')
+                    clear()
                     print("too high")
                     rounds -= 1
                     guesses += 1 
                     print("You have %s rounds left" % rounds)
                 elif int(guess) < number:
-                    os.system('clear')
+                    clear()
                     print("Too low")
                     rounds -= 1
                     guesses += 1
@@ -68,41 +72,41 @@ def option1():
     except ValueError:
         print("Sorry, you may only use numbers, no letters")
         time.sleep(2)
-        os.system('clear')
+        clear()
         option1()
 
 def option2():
     try:
         guesses = 0
         rounds = 1
-        os.system('clear')
+        clear()
         while rounds == 0 or rounds > 0:
             print("Round %s" % str(rounds))
-            guess = input("Number")
+            guess = input("Number ")
             if int(guess) in listofnumbers:
                 print("You have already used that number before")
                 print(listofnumbers)
             elif int(guess) not in listofnumbers:
                 listofnumbers.append(int(guess))
                 if int(guess) > number:
-                    os.system('clear')
+                    clear()
                     print("Too high")
                     rounds += 1
                     guesses += 1
                 elif int(guess) < number:
-                    os.system('clear')
+                    clear()
                     print("Too low")
                     rounds += 1
                     guesses += 1
                 elif int(guess) == number:
-                    os.system('clear')
+                    clear()
                     print("You got it! It was " + str(number))
                     print("You did it in %s guesses" % guesses)
                     playagain = input("Do you wanna play again?")
-                    if playagain.lower() == 'yes':
-                        os.system('clear')
+                    if playagain.lower() == 'yes' or playagain.lower() == 'y':
+                        clear()
                         start()
-                    elif playagain.lower() == 'no':
+                    elif playagain.lower() == 'no' or playagain.lower() == 'n':
                         sys.exit()
                     else:
                         print("Please either do 'Y' or 'N'")
@@ -110,6 +114,6 @@ def option2():
     except ValueError:
         print("Sorry, you may only use numbers, no letters")
         time.sleep(2)
-        os.system('clear')
+        clear()
         option2()       
 start()
