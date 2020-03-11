@@ -1,4 +1,5 @@
-
+#Built for Linx (Debian) system
+#For windows replace os.system('clear') with os.system('cls')
 import random
 import os 
 import sys
