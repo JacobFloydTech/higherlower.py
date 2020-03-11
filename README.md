@@ -3,6 +3,7 @@
 Simple higher-lower game made in Python 3.6
 
 Consists of two modes: 
+
 Option 1: Limited amount of rounds
 
 Option 2: Unlimited amount of rounds (counts up)
