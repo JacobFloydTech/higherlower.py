@@ -4,7 +4,7 @@ import os
 import sys
 import time
 listofnumbers = []
- 
+
 #Determines what OS is, then uses the correct clear command
 def clear():
     if platform.system() == 'Windows':
